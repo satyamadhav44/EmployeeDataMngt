@@ -10,9 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class BaseResponse {
-
-    public String message;
-    public String statusCode;
-    public String error;
+    private String message;
+    private String statusCode;
+    private String error;
 }
 

@@ -9,8 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import static com.example.sampleapp.constants.Constants.GET_INF0;
-import static com.example.sampleapp.constants.Constants.ROOT;
+import java.util.List;
+
+import static com.example.sampleapp.constants.Constants.*;
 
 @RestController
 @RequestMapping(ROOT)
@@ -19,9 +20,14 @@ public class EmployeeController {
     @Autowired
     private EmployeeDataService employeeDataService;
 
-    @GetMapping(GET_INF0)
-    public ResponseEntity<BaseResponse> getEmployeeDetails(@RequestHeader @Validated HttpHeaders headers , @RequestBody @Validated Employee emp){
-        BaseResponse baseResponse= employeeDataService.getEmployeeData(emp);
+    @PostMapping(POST_INF0)
+    public ResponseEntity<BaseResponse> postEmployeeDetails(@RequestHeader @Validated HttpHeaders headers , @RequestBody @Validated Employee emp){
+        BaseResponse baseResponse= employeeDataService.postEmployeeData(emp);
        return ResponseEntity.ok(baseResponse);
+    }
+
+    @GetMapping(GET_INF0)
+    public ResponseEntity<List<Employee>> getEmpDetails(@RequestHeader @Validated HttpHeaders headers){
+                return ResponseEntity.ok(employeeDataService.getEmpDetails());
     }
 }
