@@ -5,6 +5,8 @@ services:
     container_name: mongoDB
     ports:
       - 27017:27017
+    volumes:
+      - EmployeeVol:/data/db
 
   employeeapp:
     build: .
