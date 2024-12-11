@@ -1,3 +1,4 @@
+name: ${COMPOSE_PROJECT_NAME}
 services:
 
   mongoDB:
@@ -6,7 +7,7 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - EmployeeVol:/data/db
+      - employeeVol:/data/db
 
   employeeapp:
     build: .
@@ -19,4 +20,5 @@ services:
       - mongoDB
 
 volumes:
-  EmployeeVol:
+  employeeVol:
+    name: employee_vol
