@@ -5,7 +5,6 @@ import com.example.sampleapp.dto.Employee;
 import com.example.sampleapp.service.EmployeeDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +27,19 @@ public class EmployeeController {
     }
 
     @GetMapping(GET_INF0)
-    public ResponseEntity<List<Employee>> getEmpDetails(@RequestHeader @Validated HttpHeaders headers){
-                return ResponseEntity.ok(employeeDataService.getEmpDetails());
+    public ResponseEntity<List<Employee>> getAllEmpDetails(@RequestHeader @Validated HttpHeaders headers){
+                return ResponseEntity.ok(employeeDataService.getAllEmpDetails());
+    }
+
+    @PutMapping(UPDATE_INF0)
+    public ResponseEntity<BaseResponse> updateEmpDetails(@RequestHeader @Validated HttpHeaders headers
+            ,@PathVariable int id
+            ,@RequestBody @Validated Employee emp){
+        return ResponseEntity.ok(employeeDataService.updateEmpDetails(id,emp));
+    }
+
+    @GetMapping(GET_INF0_BY_ID)
+    public ResponseEntity<BaseResponse> getEmpDetailsById(@RequestHeader @Validated HttpHeaders headers,@PathVariable int id){
+        return ResponseEntity.ok(employeeDataService.getDetailsById(id));
     }
 }
